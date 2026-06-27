@@ -1,0 +1,51 @@
+# .distignore — files and folders excluded from the distributed plugin package.
+#
+# Used by WordPress packaging tools (e.g. `wp dist-archive`) to build the
+# release ZIP. The plugin's tests and development-only docs are kept in version
+# control for development and CI, but are NOT shipped to end users.
+
+# Tests (development/CI only)
+tests/
+
+# Version control / project meta
+.git/
+.gitignore
+.gitattributes
+.github/
+.distignore
+
+# Agent / development working docs — not part of the shipped plugin
+CLAUDE.md
+AGENTS.md
+DESIGN.md
+goals.md
+.claude/
+
+# Local dev infrastructure
+docker-compose.yml
+docker/
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Build artifacts / dependencies
+*.zip
+node_modules/
+vendor/
+
+# Local databases and SQL dumps
+database/
+*.sql
+*.sql.gz
+
+# Logs
+debug.log
+error_log

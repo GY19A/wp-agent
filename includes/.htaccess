@@ -1,0 +1,19 @@
+# Block direct web access to plugin internals.
+#
+# Files under includes/ (PHP classes, the skills data directory, pricing JSON,
+# etc.) are loaded server-side by the plugin via the filesystem and are never
+# meant to be fetched over HTTP. Deny direct requests so internal data such as
+# the built-in SKILL.md prompt files and model-pricing.json cannot be read or
+# crawled from the public web. PHP execution paths are unaffected — the plugin
+# includes these files directly, it does not request them over HTTP.
+
+# Apache 2.4+
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+
+# Apache 2.2 and earlier
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>

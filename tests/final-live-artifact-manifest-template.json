@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "manifest_type": "wp-agent-final-live-artifact-manifest",
+  "status": "template_pending_live",
+  "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "created_by": "REPLACE_WITH_OPERATOR",
+  "self_archive": {
+    "path": "/path/to/wp-agent/design/test-logs/final-live-artifact-manifest-YYYYMMDD.json",
+    "self_hash_policy": "do_not_embed_self_hash; verify with sha256sum after archive and record in the final acceptance summary"
+  },
+  "official_stack": {
+    "compose_file": "docker-compose.official.yml",
+    "project": "wp-agent-official",
+    "wordpress_image": "wordpress:php8.3-apache",
+    "wpcli_image": "wordpress:cli-php8.3",
+    "wordpress_url": "http://localhost:12910",
+    "database_dir": "/path/to/wp-agent/database/official-mysql"
+  },
+  "git": {
+    "head": "REPLACE_WITH_LOCAL_GIT_HEAD",
+    "remote_push": false,
+    "status_short": "REPLACE_WITH_REVIEWED_GIT_STATUS",
+    "git_hygiene_command": "php tests/git-hygiene-contract.php"
+  },
+  "inputs": {
+    "reviewed_input_source": "tests/final-live-inputs.example.env",
+    "review_packet_source": "tests/final-live-review-packet-YYYYMMDD.md",
+    "github_repository": "REPLACE_WITH_OFFICIAL_OWNER_REPO",
+    "github_ref": "REPLACE_WITH_OFFICIAL_REF",
+    "github_skill_path": "REPLACE_WITH_OFFICIAL_SKILL_PATH",
+    "github_review_policy": "REPLACE_WITH_REVIEW_POLICY",
+    "soak_source_url": "REPLACE_WITH_PUBLIC_SOURCE_URL",
+    "soak_approval_phrase": "approve-multi-hour-soak",
+    "soak_approval_confirmed": true,
+    "soak_seconds": 14400,
+    "cost_budget_usd": 5,
+    "artifact_policy": "drafts_journal_usage",
+    "token_disclosed": false
+  },
+  "command_plan": {
+    "command": "php tests/final-live-command-plan.php path/to/reviewed.env path/to/final-live-review-packet-YYYYMMDD.md",
+    "artifact_path": "/path/to/wp-agent/design/test-logs/final-live-command-plan-YYYYMMDD.json",
+    "commands_executable": true,
+    "ready_for_live_execution": true,
+    "review_packet_ready": true,
+    "review_packet_env_consistent": true,
+    "placeholder_rejected": false,
+    "ux_validation_before_manifest": true,
+    "summary_before_manifest": true,
+    "output_sha256": "REPLACE_WITH_SHA256_OF_COMMAND_PLAN_OUTPUT"
+  },
+  "contracts": {
+    "no_live_acceptance": {
+      "command": "php tests/final-no-live-acceptance-contract.php",
+      "success": true,
+      "output_sha256": "REPLACE_WITH_SHA256"
+    },
+    "completion_gate": {
+      "command": "php tests/final-live-completion-gate-contract.php",
+      "completion_ready": true,
+      "output_sha256": "REPLACE_WITH_SHA256"
+    },
+    "artifact_manifest": {
+      "command": "php tests/final-live-artifact-manifest-contract.php",
+      "success": true
+    }
+  },
+  "artifacts": [
+    {
+      "kind": "no_live_acceptance",
+      "path": "/path/to/wp-agent/design/test-logs/final-no-live-acceptance-contract-YYYYMMDD.md",
+      "sha256": "REPLACE_WITH_SHA256",
+      "size_bytes": 0,
+      "validated_by": "tests/final-no-live-acceptance-contract.php",
+      "token_disclosed": false
+    },
+    {
+      "kind": "strict_preflight",
+      "path": "/path/to/wp-agent/design/test-logs/final-acceptance-preflight-YYYYMMDD.json",
+      "sha256": "REPLACE_WITH_SHA256",
+      "size_bytes": 0,
+      "validated_by": "tests/final-acceptance-preflight.php",
+      "token_disclosed": false
+    },
+    {
+      "kind": "command_plan",
+      "path": "/path/to/wp-agent/design/test-logs/final-live-command-plan-YYYYMMDD.json",
+      "sha256": "REPLACE_WITH_SHA256",
+      "size_bytes": 0,
+      "validated_by": "tests/final-live-command-plan.php",
+      "token_disclosed": false
+    },
+    {
+      "kind": "github_skill_store",
+      "path": "/path/to/wp-agent/design/test-logs/final-live-github-skill-store-YYYYMMDD.json",
+      "sha256": "REPLACE_WITH_SHA256",
+      "size_bytes": 0,
+      "validated_by": "tests/final-live-completion-gate-contract.php",
+      "token_disclosed": false
+    },
+    {
+      "kind": "editorial_daemon_soak",
+      "path": "/path/to/wp-agent/design/test-logs/final-live-editorial-daemon-soak-YYYYMMDD.json",
+      "sha256": "REPLACE_WITH_SHA256",
+      "size_bytes": 0,
+      "validated_by": "tests/final-live-completion-gate-contract.php",
+      "token_disclosed": false
+    },
+    {
+      "kind": "git_hygiene",
+      "path": "/path/to/wp-agent/design/test-logs/git-hygiene-contract-YYYYMMDD.md",
+      "sha256": "REPLACE_WITH_SHA256",
+      "size_bytes": 0,
+      "validated_by": "tests/git-hygiene-contract.php",
+      "token_disclosed": false
+    },
+    {
+      "kind": "ux_evidence",
+      "path": "/path/to/wp-agent/design/test-logs/ui-playwright-evidence-contract-YYYYMMDD.md",
+      "sha256": "REPLACE_WITH_SHA256",
+      "size_bytes": 0,
+      "validated_by": "tests/ui-playwright-evidence-contract.php",
+      "token_disclosed": false
+    },
+    {
+      "kind": "acceptance_summary",
+      "path": "/path/to/wp-agent/design/test-logs/final-live-acceptance-summary-YYYYMMDD.md",
+      "sha256": "REPLACE_WITH_SHA256",
+      "size_bytes": 0,
+      "validated_by": "tests/final-live-completion-gate-contract.php",
+      "token_disclosed": false
+    },
+    {
+      "kind": "archive_redaction_report",
+      "path": "/path/to/wp-agent/design/test-logs/final-live-archive-redaction-YYYYMMDD.md",
+      "sha256": "REPLACE_WITH_SHA256",
+      "size_bytes": 0,
+      "validated_by": "tests/final-live-archive-redaction-contract.php",
+      "token_disclosed": false
+    }
+  ],
+  "external_gates": {
+    "row_6_skills_store": "passed",
+    "row_9_daemon_soak": "passed"
+  },
+  "security": {
+    "secret_scan": "passed",
+    "token_disclosed": false,
+    "official_db_dir_confirmed": true,
+    "raw_secret_assignments": false
+  },
+  "review": {
+    "reviewer": "REPLACE_WITH_REVIEWER",
+    "decision": "pending_review",
+    "notes": ""
+  }
+}

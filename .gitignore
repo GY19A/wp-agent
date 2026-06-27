@@ -1,0 +1,40 @@
+# Claude / agent working docs — NOT part of the shipped plugin
+CLAUDE.md
+AGENTS.md
+DESIGN.md
+goals.md
+.claude/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Build artifacts
+*.zip
+node_modules/
+vendor/
+
+# Local databases and SQL dumps must stay outside the shipped plugin
+database/
+*.sql
+*.sql.gz
+
+# Final live approval/review artifacts are local-only and may contain approved
+# external inputs. Keep templates tracked, but ignore completed packets/envs.
+/final-live-review-packet-*.md
+/final-live-inputs.*.env
+tests/final-live-review-packet-*.md
+!tests/final-live-review-packet-template.md
+tests/final-live-inputs.*.env
+!tests/final-live-inputs.example.env
+
+# Debug/logs
+debug.log
+error_log
